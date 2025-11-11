@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
@@ -15,7 +16,9 @@ function App() {
 
   return (
     <>
+      <div className="container">
 
+      </div>
     </>
   )
 }
