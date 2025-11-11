@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -24,6 +24,19 @@ function App() {
     }
   }
 
+  const [selectedGenre, setSelectedGenre] = useState("")
+
+  useEffect(() => {
+    if (selectedGenre === "") {
+      setMovies(initialMovies);
+    } else {
+      const filteredMovies = initialMovies.filter(
+        (movie) => movie.genre === selectedGenre
+      );
+      setMovies(filteredMovies);
+    }
+  }, [selectedGenre])
+
   return (
     <>
       <div className="container py-4">
@@ -32,8 +45,8 @@ function App() {
         <form onSubmit={(e) => e.preventDefault}>
           <div className="input-group mb-3">
             <label className="input-group-text">Genre</label>
-            <select className="form-select">
-              <option value='' selected>Choose...</option>
+            <select className="form-select" value={selectedGenre} onChange={e => setSelectedGenre(e.target.value)}>
+              <option value=''>Choose...</option>
               {
                 genres.map((current, index) =>
                   <option key={index} value={current}>{current}</option>
