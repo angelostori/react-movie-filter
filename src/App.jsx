@@ -18,6 +18,21 @@ function App() {
     <>
       <div className="container py-4">
         <h2 className='text-center mb-4'>My movie list</h2>
+
+        <form onSubmit={(e) => e.preventDefault}>
+          <div className="input-group mb-3">
+            <label className="input-group-text" for="inputGroupSelect">Genre</label>
+            <select className="form-select" id="inputGroupSelect">
+              <option value='' selected>Choose...</option>
+              <option value="fantascienza">Fantascienza</option>
+              <option value="thriller">Thriller</option>
+              <option value="romantico">Romantico</option>
+              <option value="azione">Azione</option>
+            </select>
+            <button className="btn btn-outline-secondary" type="submit">Search</button>
+          </div>
+        </form>
+
         <ul className='list-group mb-4 shadow-sm'>
           {
             movies.map((movie, index) => (
