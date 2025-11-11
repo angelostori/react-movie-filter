@@ -16,8 +16,22 @@ function App() {
 
   return (
     <>
-      <div className="container">
-
+      <div className="container py-4">
+        <h2 className='text-center mb-4'>My movie list</h2>
+        <ul className='list-group mb-4 shadow-sm'>
+          {
+            movies.map((movie, index) => (
+              <li key={index} className='list-group-item align-items-center d-flex justify-content-between'>
+                <div>
+                  {movie.title}
+                </div>
+                <div>
+                  {movie.genre}
+                </div>
+              </li>
+            ))
+          }
+        </ul>
       </div>
     </>
   )
