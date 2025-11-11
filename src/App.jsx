@@ -14,6 +14,16 @@ function App() {
 
   const [movies, setMovies] = useState(initialMovies)
 
+  // Creo un nuovo array da quello iniziale per recuperare tutti i generi
+  // senza doppioni
+  const genres = []
+  for (let i = 0; i < initialMovies.length; i++) {
+    const myGenre = initialMovies[i].genre;
+    if (!genres.includes(myGenre)) {
+      genres.push(myGenre)
+    }
+  }
+
   return (
     <>
       <div className="container py-4">
@@ -21,13 +31,14 @@ function App() {
 
         <form onSubmit={(e) => e.preventDefault}>
           <div className="input-group mb-3">
-            <label className="input-group-text" for="inputGroupSelect">Genre</label>
-            <select className="form-select" id="inputGroupSelect">
+            <label className="input-group-text">Genre</label>
+            <select className="form-select">
               <option value='' selected>Choose...</option>
-              <option value="fantascienza">Fantascienza</option>
-              <option value="thriller">Thriller</option>
-              <option value="romantico">Romantico</option>
-              <option value="azione">Azione</option>
+              {
+                genres.map((current, index) =>
+                  <option key={index} value={current}>{current}</option>
+                )
+              }
             </select>
             <button className="btn btn-outline-secondary" type="submit">Search</button>
           </div>
